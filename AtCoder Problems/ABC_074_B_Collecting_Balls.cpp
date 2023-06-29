@@ -31,19 +31,33 @@ template <class T> bool chmin(T &a, const T &b) {
 /********************************************/
 
 /********************code********************/
+// unneccesary proc
 void _main() {
-    int N, a[109];
+    int N, K;
+    int x[109];
+    int ball[109][109] = {0};
     cin >> N;
-    int Alice = 0, Bob = 0;
-    rep(i, 0, N) cin >> a[i];
-    sort(a, a + N, greater<int>());
-    rep(i, 0, N) {
-        if (i % 2 == 0) {
-            Alice += a[i];
-        } else {
-            Bob += a[i];
+    cin >> K;
+    rep(i, 1, N + 1) cin >> x[i];
+    rep(i, 1, N + 1) ball[x[i]][i] = 1;
+    int total = 0;
+    rep(x, 1, N + 1) {
+        rep(y, 1, K + 1) {
+            if (ball[y][x] == 1) {
+                total += min((y * 2), ((K - y) * 2));
+            }
         }
     }
-    cout << Alice - Bob << endl;
-    return;
+    cout << total << endl;
+}
+
+/***************exmple_answer****************/
+int N, K, X[101];
+void _main() {
+    cin >> N >> K;
+    rep(i, 0, N) cin >> X[i];
+
+    int ans = 0;
+    rep(i, 0, N) ans += min(X[i] * 2, (K - X[i]) * 2);
+    cout << ans << endl;
 }

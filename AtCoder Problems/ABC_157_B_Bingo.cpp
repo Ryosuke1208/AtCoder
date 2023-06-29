@@ -32,18 +32,24 @@ template <class T> bool chmin(T &a, const T &b) {
 
 /********************code********************/
 void _main() {
-    int N, a[109];
+    int A[3][3], N, b[11], Answer[3][3];
+    rep(i, 0, 3) { rep(j, 0, 3) cin >> A[i][j]; }
+    rep(i, 0, 3) { rep(j, 0, 3) Answer[i][j] = 0; }
     cin >> N;
-    int Alice = 0, Bob = 0;
-    rep(i, 0, N) cin >> a[i];
-    sort(a, a + N, greater<int>());
     rep(i, 0, N) {
-        if (i % 2 == 0) {
-            Alice += a[i];
-        } else {
-            Bob += a[i];
+        cin >> b[i];
+        rep(j, 0, 3) {
+            rep(k, 0, 3) if (A[j][k] == b[i]) { Answer[j][k] = 1; };
         }
     }
-    cout << Alice - Bob << endl;
-    return;
+    rep(i, 0, 3) {
+        if ((Answer[i][0] == 1 && Answer[i][1] == 1 && Answer[i][2] == 1) ||
+            (Answer[0][i] == 1 && Answer[1][i] == 1 && Answer[2][i] == 1) ||
+            (Answer[0][0] == 1 && Answer[1][1] == 1 && Answer[2][2] == 1) ||
+            (Answer[0][2] == 1 && Answer[1][1] == 1 && Answer[2][0] == 1)) {
+            cout << "Yes" << endl;
+            return;
+        }
+    }
+    cout << "No" << endl;
 }

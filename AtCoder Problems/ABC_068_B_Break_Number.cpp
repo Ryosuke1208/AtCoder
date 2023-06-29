@@ -29,21 +29,18 @@ template <class T> bool chmin(T &a, const T &b) {
     return 0;
 }
 /********************************************/
-
 /********************code********************/
 void _main() {
-    int N, a[109];
+    int N;
+    int temp[] = {1, 2, 4, 8, 16, 32, 64, 128};
+    int cnt = 0;
     cin >> N;
-    int Alice = 0, Bob = 0;
-    rep(i, 0, N) cin >> a[i];
-    sort(a, a + N, greater<int>());
-    rep(i, 0, N) {
-        if (i % 2 == 0) {
-            Alice += a[i];
-        } else {
-            Bob += a[i];
+    while (true) {
+        if (temp[cnt] > N) {
+            cnt--;
+            break;
         }
+        cnt++;
     }
-    cout << Alice - Bob << endl;
-    return;
+    cout << temp[cnt] << endl;
 }
